@@ -4,9 +4,9 @@
 #include <HardwareSerial.h>
 
 // ==== CONFIG ====
-const char* ssid     = "TU_SSID";
-const char* password = "TU_PSW";
-const char* server   = "http://192.168.1.68/universidad_api/verificar_y_registrar.php";
+const char* ssid     = "INFINITUMCBB0";
+const char* password = "2xVTMTmeN2";
+const char* server   = "http://192.168.1.68/universidad/api/verificar_y_registrar.php";
 const int   id_salon = 1;
 
 // Pines recomendados para UART en ESP32-S3
