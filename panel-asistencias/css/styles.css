@@ -1,0 +1,40 @@
+/* Estilos generales */
+body {
+    background-color: #f8f9fa;
+}
+
+.card {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+/* Navbar personalizada */
+.navbar-brand {
+    font-weight: 600;
+}
+
+/* Tablas */
+.table th {
+    background-color: #f1f1f1;
+}
+
+/* Badges */
+.badge {
+    font-size: 0.85em;
+    font-weight: 500;
+}
+
+/* Botones con iconos */
+.btn i {
+    margin-right: 5px;
+}
+
+/* Responsive tables */
+.table-responsive {
+    overflow-x: auto;
+}
+
+/* Dashboard cards */
+.card .display-4 {
+    font-size: 2.5rem;
+    font-weight: 300;
+}
