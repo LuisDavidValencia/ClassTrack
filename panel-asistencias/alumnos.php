@@ -66,6 +66,9 @@ $busqueda = isset($_GET['busqueda']) ? $conn->real_escape_string($_GET['busqueda
                                     <a href='alumno_asistencias.php?id={$alumno['id_alumno']}' class='btn btn-sm btn-info' title='Ver asistencias'>
                                         <i class='fas fa-clipboard-list'></i>
                                     </a>
+                                    <a href='horario_alumno.php?id={$alumno['id_alumno']}' class='btn btn-sm btn-success' title='Ver horario'>
+                                        <i class='fas fa-calendar-alt'></i>
+                                    </a>
                                 </td>
                               </tr>";
                     }
