@@ -1,27 +1,30 @@
 <?php
 require_once 'config.php';
 
-// Verificar permisos y autenticación aquí (añadir según necesidades)
-
-$id_horario = isset($_GET['id']) ? intval($_GET['id']) : 0;
-
-if ($id_horario <= 0) {
-    header("Location: horarios.php?error=ID inválido");
-    exit;
-}
-
-// Verificar si el horario tiene asistencias registradas
-$tiene_asistencias = $conn->query("SELECT 1 FROM asistencias WHERE id_horario = $id_horario LIMIT 1")->num_rows > 0;
-
-if ($tiene_asistencias) {
-    header("Location: horarios.php?error=No se puede eliminar, el horario tiene asistencias registradas");
-    exit;
-}
-
-// Eliminar horario
-if ($conn->query("DELETE FROM horarios WHERE id_horario = $id_horario")) {
-    header("Location: horarios.php?success=Horario eliminado correctamente");
+if (isset($_GET['id'])) {
+    $id_horario = $_GET['id'];
+    
+    // Verificar si el horario existe
+    $stmt = $conn->prepare("SELECT * FROM horarios WHERE id_horario = ?");
+    $stmt->bind_param("i", $id_horario);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $horario = $result->fetch_assoc();
+    
+    if ($horario) {
+        // Eliminar el horario
+        $stmt = $conn->prepare("DELETE FROM horarios WHERE id_horario = ?");
+        $stmt->bind_param("i", $id_horario);
+        
+        if ($stmt->execute()) {
+            header('Location: horarios.php?deleted=1');
+        } else {
+            header('Location: horarios.php?error=1');
+        }
+    } else {
+        header('Location: horarios.php?error=2');
+    }
 } else {
-    header("Location: horarios.php?error=Error al eliminar: " . urlencode($conn->error));
+    header('Location: horarios.php');
 }
-?>
+exit;
